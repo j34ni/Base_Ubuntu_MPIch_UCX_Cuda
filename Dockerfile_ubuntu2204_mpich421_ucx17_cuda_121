@@ -61,7 +61,7 @@ ENV CPATH=/usr/local/xpmem/include:$CPATH \
 # UCX version 1.17.0
 RUN wget -q -nc --no-check-certificate -P /var/tmp https://github.com/openucx/ucx/releases/download/v1.17.0/ucx-1.17.0.tar.gz && \
     tar -x -f /var/tmp/ucx-1.17.0.tar.gz -C /var/tmp -z && \
-    cd /var/tmp/ucx-1.17.0 && CC=gcc CXX=g++ F77=gfortran FC=gfortran ./configure --prefix=/usr/local/ucx --disable-assertions --enable-debug --enable-logging --disable-doxygen-doc --disable-logging --disable-params-check --enable-optimizations --with-xpmem=/usr/local/xpmem --with-rdmacm=/usr/local/rdma-core-52.0/build --with-cuda=/usr/local/cuda-12.1/targets/x86_64-linux && \
+    cd /var/tmp/ucx-1.17.0 && CC=gcc CXX=g++ F77=gfortran FC=gfortran ./configure --prefix=/usr/local/ucx --disable-assertions --enable-debug --enable-logging --disable-doxygen-doc --disable-logging --disable-params-check --enable-optimizations --with-xpmem=/usr/local/xpmem --with-knem=no --with-rdmacm=/usr/local/rdma-core-52.0/build --with-cuda=/usr/local/cuda-12.1/targets/x86_64-linux && \
     make -j$(nproc) && make -j$(nproc) install && \
     echo "/usr/local/ucx/lib" >> /etc/ld.so.conf.d/espresso.conf && ldconfig && \
     rm -rf /var/tmp/ucx-1.17.0 /var/tmp/ucx-1.17.0.tar.gz
